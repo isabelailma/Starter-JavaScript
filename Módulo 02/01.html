@@ -1,0 +1,32 @@
+<!-- 1º Exercício - Crie um botão que ao ser clicado cria um novo elemento em tela com a forma de um quadrado
+vermelho com 100px de altura e largura. Sempre que o botão for clicado um novo quadrado deve
+aparecer na tela. -->
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Starter JavaScript - Módulo 02</title>
+  </head>
+  <body>
+    <div id="app">
+      <button class="button">Criar Elemento</button>
+      <div id="squares"></div>
+    </div>
+
+    <script>
+      var buttonElement = document.querySelector('.button');
+
+      var squaresElement = document.querySelector('#squares');
+
+      buttonElement.onclick = function() {
+        var square = document.createElement('div');
+        square.setAttribute('class', 'box');
+        square.style.width = 100;
+        square.style.height = 100;
+        square.style.backgroundColor = '#f00';
+
+        squaresElement.appendChild(square);
+      }
+    </script>
+  </body>
+</html>
