@@ -1,0 +1,31 @@
+<!-- A partir do seguinte vetor:
+var nomes = ["Diego", "Gabriel", "Lucas"];
+Preencha uma lista (<ul>) no HTML com os itens da seguinte forma:
+● Diego
+● Gabriel
+● Lucas -->
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Starter JavaScript - Módulo 02</title>
+  </head>
+  <body>
+    <div id="app">
+      <ul class="list"></ul>
+    </div>
+
+    <script>
+      var nomes = ["Diego", "Gabriel", "Lucas"];
+      var listElement = document.querySelector('.list');
+
+      for (nome of nomes) {
+        var itemElement = document.createElement('li');
+        var textElement = document.createTextNode(nome);
+        itemElement.appendChild(textElement);
+
+        listElement.appendChild(itemElement);
+      }
+    </script>
+  </body>
+</html>
