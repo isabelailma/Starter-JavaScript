@@ -5,7 +5,7 @@ var inputElement = document.querySelector('#app input');
 /** Botão */
 var buttonElement = document.querySelector('#app button');
 
-var toDos = JSON.parse(localStorage.getItem('listToDos'));
+var toDos = JSON.parse(localStorage.getItem('listToDos')) || [];
 
 function renderToDos() {
   /** Limpar contúdo da lista HTML antes de renderizar, ou seja, limpar todo o conteúdo dentro de <ul></ul> */
