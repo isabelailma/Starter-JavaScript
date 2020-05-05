@@ -18,26 +18,25 @@ demais itens anteriores. Além disso, o conteúdo do input deve ser apagado apó
     </div>
 
     <script>
-      var inputElement = document.querySelector('input[name=nome]');
-
-      function adicionar() {
-        var itemElement = document.createElement('li');
-        var textElement = document.createTextNode(inputElement.value);
-        itemElement.appendChild(textElement);
-
-        listElement.appendChild(itemElement);
-        inputElement.value = '';
-      }
-
       var nomes = ["Diego", "Gabriel", "Lucas"];
       var listElement = document.querySelector('.list');
+      var inputElement = document.querySelector('input[name=nome]');
 
-      for (nome of nomes) {
+      function addItem(text) {
         var itemElement = document.createElement('li');
-        var textElement = document.createTextNode(nome);
+        var textElement = document.createTextNode(text);
         itemElement.appendChild(textElement);
 
         listElement.appendChild(itemElement);
+      }
+
+      function adicionar() {
+        addItem(inputElement.value);
+        inputElement.value = '';    
+      }
+
+      for (nome of nomes) {
+        addItem(nome);
       }
     </script>
   </body>
