@@ -5,11 +5,7 @@ idade o resultado deve cair no .then, caso contrário, no .catch */
 function checaIdade(idade) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
-      if (idade > 18) {
-        resolve();
-      } else {
-        reject();
-      }
+      (idade > 18) ? resolve() : reject();
     }, 2000)
   })
 }
