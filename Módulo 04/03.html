@@ -59,8 +59,12 @@ Dica: Quando o usuário não existe, a requisição irá cair no .catch com cód
       }
 
       function listRepositories() {
+        var user = inputElement.value;
+
+        if (!user) return;
+
         renderLoading('Carregando...');
-        axios.get('https://api.github.com/users/' + inputElement.value + '/repos')
+        axios.get('https://api.github.com/users/' + user + '/repos')
         .then(function(response) {
           renderRepositories(response.data);
         })
