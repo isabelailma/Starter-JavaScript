@@ -1,0 +1,73 @@
+<!-- A partir do resultado do exemplo anterior adicione um indicador de carregamento em tela no lugar
+da lista apenas enquanto a requisição estiver acontecendo:
+<li>Carregando...</li>
+Além disso, adicione uma mensagem de erro em tela caso o usuário no Github não exista.
+Dica: Quando o usuário não existe, a requisição irá cair no .catch com código de erro 404 -->
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Starter JavaScript - Módulo 04</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" placeholder="Usuário Github" name="user">
+      <button onclick="listRepositories()">Adicionar</button>
+      <ul></ul>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      /* input */
+      var inputElement = document.querySelector('input[name=user]');
+      /* button */
+      var buttonElement = document.querySelector('#app button');
+      /* ul */
+      var listElement = document.querySelector('#app ul');
+
+      function renderRepositories(repositories) {
+        /** Limpar contúdo da lista HTML antes de renderizar, ou seja, limpar todo o conteúdo dentro de <ul></ul> */
+        listElement.innerHTML = ''; 
+        for (repository of repositories) {
+          var liElement = document.createElement('li');
+          var liText = document.createTextNode(repository.name);
+          liElement.appendChild(liText);
+
+          listElement.appendChild(liElement);
+        }
+      }
+
+      function renderLoading(loading) {
+        /** Limpar contúdo da lista HTML antes de renderizar, ou seja, limpar todo o conteúdo dentro de <ul></ul> */
+        listElement.innerHTML = '';
+        var liElement = document.createElement('li');
+        var liText = document.createTextNode(loading);
+        liElement.appendChild(liText);
+
+        listElement.appendChild(liElement);
+      }
+
+      function renderErro(loading) {
+        /** Limpar contúdo da lista HTML antes de renderizar, ou seja, limpar todo o conteúdo dentro de <ul></ul> */
+        listElement.innerHTML = '';
+        var liElement = document.createElement('li');
+        var liText = document.createTextNode(loading);
+        liElement.appendChild(liText);
+        liElement.style.color = '#f00';
+
+        listElement.appendChild(liElement);
+      }
+
+      function listRepositories() {
+        renderLoading('Carregando...');
+        axios.get('https://api.github.com/users/' + inputElement.value + '/repos')
+        .then(function(response) {
+          renderRepositories(response.data);
+        })
+        .catch(function(error) {
+          renderErro('Usuário inexistente');
+        });
+      }
+    </script>
+  </body>
+</html>
